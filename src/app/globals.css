@@ -1,0 +1,207 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Clash Grotesk";
+  src: url("/fonts/ClashGrotesk-Variable.woff2") format("woff2");
+  font-weight: 200 700;
+  font-display: swap;
+  font-style: normal;
+}
+
+:root {
+
+  --background: #fbfbfd;
+  --foreground: #1c1c24;
+  --surface: #ffffff;
+  --muted: #6b6b78;
+  --border: #e6e6ee;
+  --accent: #5b4dff;
+  --accent-deep: #4338ca;
+  --accent-soft: #c9c3ff;
+  --cloud: #ebe8ff;
+  --cloud-warm: #f3f0ff;
+  --ink: #14141a;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-deep: var(--accent-deep);
+  --color-accent-soft: var(--accent-soft);
+  --color-cloud: var(--cloud);
+  --color-cloud-warm: var(--cloud-warm);
+  --color-ink: var(--ink);
+  --font-sans: "Clash Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --radius-4xl: 2rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: auto;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--accent) 16%, white);
+  color: var(--foreground);
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 38s linear infinite;
+}
+
+/* Do not pause the marquee on hover */
+
+
+.btn-3d {
+  background: linear-gradient(
+    180deg,
+    #7b6fff 0%,
+    #5b4dff 42%,
+    #3f35c8 100%
+  );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.38),
+    inset 0 -3px 8px rgba(24, 16, 90, 0.35),
+    inset 0 8px 14px rgba(24, 16, 90, 0.18),
+    0 14px 28px -10px rgba(67, 56, 202, 0.55);
+}
+
+.btn-3d:hover {
+  filter: brightness(1.04);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.42),
+    inset 0 -3px 8px rgba(24, 16, 90, 0.32),
+    inset 0 8px 14px rgba(24, 16, 90, 0.16),
+    0 16px 32px -10px rgba(67, 56, 202, 0.6);
+}
+
+.btn-3d-orb {
+  display: inline-flex;
+  height: 1.85rem;
+  width: 1.85rem;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background: #fff;
+  color: #1c1c24;
+  box-shadow: 0 1px 2px rgba(24, 24, 31, 0.12);
+}
+
+/* —— Cloud overlays (section atmosphere, not background swaps) —— */
+.cloud-blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(80px);
+  will-change: transform;
+  opacity: 0.55;
+}
+
+.cloud-blob--a {
+  top: -18%;
+  left: 8%;
+  width: min(58vw, 720px);
+  height: min(48vw, 560px);
+}
+
+.cloud-blob--b {
+  right: -10%;
+  bottom: -16%;
+  width: min(50vw, 640px);
+  height: min(44vw, 520px);
+}
+
+.cloud-tone--lilac.cloud-blob--a {
+  background: color-mix(in srgb, var(--accent) 22%, white);
+}
+
+.cloud-tone--lilac.cloud-blob--b {
+  background: color-mix(in srgb, #a78bfa 28%, white);
+}
+
+.cloud-tone--mist.cloud-blob--a {
+  background: color-mix(in srgb, #c7d2fe 55%, white);
+}
+
+.cloud-tone--mist.cloud-blob--b {
+  background: color-mix(in srgb, #fbcfe8 45%, white);
+}
+
+.cloud-tone--rose.cloud-blob--a {
+  background: color-mix(in srgb, #f9a8d4 40%, white);
+}
+
+.cloud-tone--rose.cloud-blob--b {
+  background: color-mix(in srgb, #ddd6fe 50%, white);
+}
+
+.cloud-tone--ink.cloud-blob--a {
+  background: color-mix(in srgb, var(--accent) 50%, transparent);
+  opacity: 0.45;
+}
+
+.cloud-tone--ink.cloud-blob--b {
+  background: color-mix(in srgb, #6366f1 35%, transparent);
+  opacity: 0.35;
+}
+
+/* Dark section bridge — blend into ink without a hard cut */
+.ink-bridge-top {
+  background: linear-gradient(
+    to bottom,
+    var(--background) 0%,
+    color-mix(in srgb, var(--ink) 35%, var(--background)) 42%,
+    var(--ink) 100%
+  );
+}
+
+.ink-bridge-bottom {
+  background: linear-gradient(
+    to bottom,
+    var(--ink) 0%,
+    color-mix(in srgb, var(--ink) 40%, var(--background)) 55%,
+    var(--background) 100%
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .animate-marquee {
+    animation: none !important;
+  }
+}
