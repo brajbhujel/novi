@@ -241,17 +241,11 @@ export function Features() {
                 <div
                   key={src}
                   className={cn(
-                    "cap-card shrink-0 overflow-hidden rounded-[1.75rem] p-3 shadow-[0_24px_50px_-24px_rgba(24,24,31,0.28)]",
-                    index % 2 === 0
-                      ? "bg-[linear-gradient(145deg,#e8f4ff_0%,#f3e8ff_48%,#ffe8f0_100%)]"
-                      : "bg-[linear-gradient(145deg,#e0f2fe_0%,#ede9fe_100%)]",
+                    "cap-card shrink-0 overflow-hidden rounded-[1.75rem] p-3 ",
                   )}
                 >
-                  <div className="overflow-hidden rounded-[1.35rem] bg-white ring-1 ring-black/5">
-                    <div
-                      className="relative w-full"
-                      style={{ aspectRatio: "1216 / 768" }}
-                    >
+                  <div className="overflow-hidden rounded-[1.35rem] ring-1 ring-black/5">
+                    <div className="relative w-full" style={{ aspectRatio: "1216 / 768" }}>
                       <Image
                         src={src}
                         alt={`${features[index].title} preview`}
